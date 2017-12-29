@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { CustomerHttpService } from '../services/customer-http.service';
 
 @Component({
   selector: 'app-list-customer',
@@ -9,13 +9,24 @@ import { HttpClient } from '@angular/common/http';
 export class ListCustomerComponent implements OnInit {
 
   private customerList: any[];
-  constructor(private http: HttpClient) { }
+  constructor(private customerHttpService: CustomerHttpService) { }
 
-  ngOnInit() {
-    this.http.get('/api/Customer/list')
+  getCustomer() {
+    this.customerHttpService.getCustomer({})
       .subscribe((data: any[]) => {
         this.customerList = data;
       });
   }
 
+  ngOnInit() {
+    this.getCustomer();
+  }
+
+  deleteCustomer (id) {
+    this.customerHttpService.deleteCustomer(id)
+      .subscribe(data => {
+        console.log(data);
+        return this.getCustomer();
+      })
+  }
 }

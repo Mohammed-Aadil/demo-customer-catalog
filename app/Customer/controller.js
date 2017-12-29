@@ -41,9 +41,9 @@ CustomerController.prototype.list = function (req, res){
 CustomerController.prototype.create = function(req, res){
     // creating customer obj
     return Promise.resolve(new Customer(req.body).save())
-        .then(function () {
+        .then(function (customer) {
             console.log("Customer is saved successfully");
-            res.json(this);
+            res.json(customer);
         })
         .catch(function(err){
             console.error(err);

@@ -16,18 +16,37 @@ var customerSchema = new Schema({
     },
     mobileNumber: {
         type: String,
-        validate: validator.phoneValidator
+        validate: validator.phoneValidator,
+        required: true
     },
     phoneNumber: {
         type: String,
         validate: validator.phoneValidator
     },
     addresses: {
-        type: [
-            Object
-        ],
+        type: [{
+            flat: {
+                type: String,
+                required: true   
+            },
+        }, {
+            street: {
+                type: String,
+                required: true
+            }
+        }, {
+            state: {
+                type: String,
+                required: true
+            },
+            state: {
+                type: String,
+                required: true
+            }
+        }],
+        required: true
     },
-    DOB: {
+    dob: {
         type: Date,
         required: true
     }

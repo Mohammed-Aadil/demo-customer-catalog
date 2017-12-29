@@ -1,0 +1,42 @@
+
+.list-customer {
+    margin-top: 5px;    
+}
+
+.columns {
+    margin-left: 0;
+}
+
+.customer-listing {
+    list-style: none;
+}
+
+.customer-listing > li {
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.customer-details {
+    width: 33%;
+    display: inline-block;
+}
+
+.top-nav {
+    background: black;
+    color: white;
+    padding: 10px;
+}
+
+.top-nav > div {
+    text-align: center;
+    font-size: 20px;
+}
+
+.top-nav + div {
+    margin-top: 5px;
+}
+
+.clickable {
+    cursor: pointer;
+    text-decoration: underline;
+}

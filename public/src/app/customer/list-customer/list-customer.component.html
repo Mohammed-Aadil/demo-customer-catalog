@@ -1,6 +1,27 @@
-<div *ngFor='let customer of customerList'>
-  {{customer}}
+<div class="row list-customer">
+    <div class="row top-nav">
+        <div class="columns">List Customer Catalog</div>
+    </div>
+    <div class="columns">
+      <div>
+        <a [routerLink]="['/create']" class="button button-primary">Add Customer</a>
+      </div>
+    </div>
+    <div class="columns">
+        <ul class="customer-listing">
+          <li *ngFor='let customer of customerList'>
+            <div class="customer-details">
+                <label>Name </label> {{customer.name}}
+            </div>
+            <div class="customer-details">
+                <label>Email </label> {{customer.email}}
+            </div>
+            <div class="customer-details">
+                <label>Action</label>
+                <a [routerLink]="['/edit']">Edit</a>
+                <a class="clickable" (click)="deleteCustomer(customer._id)">Delete</a>
+            </div>
+          </li>
+        </ul>
+      </div>      
 </div>
-<p>
-  list-customer works!
-</p>

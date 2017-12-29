@@ -10,8 +10,8 @@ router.route('^/filter').get(controller.filter);
 // api to create customer
 router.route('^/create$').post(controller.create);
 // api to update customer
-router.route('^/update$').put(controller.update);
+router.route('^/update/:id$').put(controller.update);
 // api to delete customer
-router.route('^/delete$').delete(controller.delete);
+router.route('^/delete/:id$').delete(controller.delete);
 
 module.exports = router;

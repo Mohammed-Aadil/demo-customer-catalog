@@ -11,8 +11,11 @@ Validator.prototype.emailValidator = function (data) {
 };
 
 Validator.prototype.phoneValidator = function (data) {
-    var mobileNumber = phoneUtil.parse(data, new ProjectConfig().defaultRegion);
-    return phoneUtil.isValidNumber(mobileNumber);
+    if (data) {
+        var mobileNumber = phoneUtil.parse(data, new ProjectConfig().defaultRegion);
+        return phoneUtil.isValidNumber(mobileNumber);
+    }
+    return true;
 };
 
 module.exports = Validator;
