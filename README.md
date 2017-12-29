@@ -1,0 +1,1 @@
+# Customer Catalog with MEAN stack demo
