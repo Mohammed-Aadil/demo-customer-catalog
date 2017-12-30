@@ -24,30 +24,13 @@ var customerSchema = new Schema({
         validate: validator.phoneValidator
     },
     addresses: {
-        type: [{
-            flat: {
-                type: String,
-                required: true   
-            },
-        }, {
-            street: {
-                type: String,
-                required: true
-            }
-        }, {
-            state: {
-                type: String,
-                required: true
-            },
-            state: {
-                type: String,
-                required: true
-            }
-        }],
+        type: [
+            {}
+        ],
         required: true
     },
     dob: {
-        type: Date,
+        type: Schema.Types.Date,
         required: true
     }
 });

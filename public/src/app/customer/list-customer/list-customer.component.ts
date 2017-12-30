@@ -8,7 +8,7 @@ import { CustomerHttpService } from '../services/customer-http.service';
 })
 export class ListCustomerComponent implements OnInit {
 
-  private customerList: any[];
+  public customerList: any[];
   constructor(private customerHttpService: CustomerHttpService) { }
 
   getCustomer() {

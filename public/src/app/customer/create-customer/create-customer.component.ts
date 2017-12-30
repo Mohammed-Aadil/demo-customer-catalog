@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from "@angular/forms";
 import { CustomerHttpService } from './../services/customer-http.service';
 import { Router } from '@angular/router';
 
@@ -13,9 +11,9 @@ import { Router } from '@angular/router';
 export class CreateCustomerComponent implements OnInit {
 
   rForm: FormGroup;
-  addressModel: FormArray;
+  addressModel: FormArray = new FormArray([]);
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private customerHttpService: CustomerHttpService, private router: Router) {
+  constructor(private fb: FormBuilder, private customerHttpService: CustomerHttpService, private router: Router) {
   }
 
   ngOnInit() {
@@ -29,12 +27,16 @@ export class CreateCustomerComponent implements OnInit {
     });
   }
 
+  get addressData() {
+    return this.rForm.get('addresses') as FormArray;
+  }
+
   createAddress(): FormGroup {
     return this.fb.group({
       flat: [null, Validators.required],
       street: [null, Validators.required],
       state: [null, Validators.required],
-      pincode: [null, Validators.required]
+      pincode: [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern('^[1-9][0-9]{5}$')])]
     });
   }
 

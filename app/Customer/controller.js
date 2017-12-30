@@ -11,7 +11,7 @@ function CustomerController () { }
 * @param {Object} res 
 */
 CustomerController.prototype.list = function (req, res){
-    var query = Customer.find({});
+    var query = Customer.find(req.query || {});
     var fieldStr = '';
     if (req.query.fields) {
         if (typeof req.query.fields === 'string')

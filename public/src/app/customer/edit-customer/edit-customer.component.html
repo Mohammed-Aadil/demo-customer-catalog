@@ -1,3 +1,64 @@
-<p>
-  edit-customer works!
-</p>
+<div class="row edit-customer">
+    <div class="row top-nav">
+        <div class="column">Edit Customer Catalog</div>
+    </div>
+    <div *ngIf="!customer">Loading ...</div>
+    <form *ngIf="customer && rForm" [formGroup]="rForm" 
+    (ngSubmit)="onSubmit(rForm.value)">
+    <div class="columns" [ngClass]="{'input-error': rForm.controls['name'].touched && rForm.controls['name'].invalid}">
+        <label for="name" >Name</label>
+        <input type="text" class="u-full-width" id="name" name="name" placeholder="Name (Required)" formControlName="name">
+    </div>
+      
+    <div class="columns" [ngClass]="{'input-error': rForm.controls['email'].touched && rForm.controls['email'].invalid}">
+      <label for="email" >Email</label>
+      <input type="email" class="u-full-width" id="email" name="email" placeholder="Email (Required)" formControlName="email">
+    </div>
+    
+    <div class="columns" [ngClass]="{'input-error': rForm.controls['mobileNumber'].touched && rForm.controls['mobileNumber'].invalid}">
+      <label for="mobileNumber" >Mobile number</label>
+      <input type="text" class="u-full-width" id="mobileNumber" name="mobileNumber" placeholder="Mobile number (Required)" formControlName="mobileNumber">
+    </div>
+    
+    <div class="columns" [ngClass]="{'input-error': rForm.controls['phoneNumber'].touched && rForm.controls['phoneNumber'].invalid}">
+      <label for="phoneNumber" >Phone number</label>
+      <input type="text" class="u-full-width" id="phoneNumber" name="phoneNumber" placeholder="Phone number" formControlName="phoneNumber">    
+    </div>
+
+    <div class="columns" [formArrayName]="'addresses'">
+      <div *ngFor="let addr of addressData.controls; let i = index">
+          <div [formGroupName]="i">
+            <div class="columns">
+              <label>Address {{i + 1}}</label>
+            </div>
+            <div class="columns six" [ngClass]="{'input-error': addr.touched && addr.controls.flat.invalid}">
+              <label>Flat</label>
+              <input type="text" placeholder="Flat number (Required)" formControlName="flat">
+            </div>
+            <div class="columns six" [ngClass]="{'input-error': addr.touched && addr.controls.street.invalid}">
+              <label>Street</label>
+              <input type="text" placeholder="Street (Required)" formControlName="street">
+            </div>
+            <div class="columns six" [ngClass]="{'input-error': addr.touched && addr.controls.state.invalid}">
+              <label>State</label>
+              <input type="text" placeholder="State (Required)" formControlName="state">
+            </div>
+            <div class="columns six" [ngClass]="{'input-error': addr.touched && addr.controls.pincode.invalid}">
+              <label>Pin code</label>
+              <input type="text" placeholder="Pin code (Required)" formControlName="pincode">
+            </div>
+          </div>
+          <a class="columns add-more-addr" (click)="deleteAddress(i)">delete address</a>
+          <hr class="columns">
+        </div>
+        <a class="columns add-more-addr" (click)="addAddress()">Add address</a>
+    </div>
+    
+    <div class="columns" [ngClass]="{'input-error': rForm.controls['dob'].touched && rForm.controls['dob'].invalid}">
+      <label for="dob">DOB</label>
+      <input type="date" class="u-full-width" id="dob" name="dob" placeholder="Date of birth (Required)" formControlName="dob">
+    </div>
+
+    <input [ngClass]="{'button-primary': rForm.valid}" type="submit" value="Submit" [disabled]="!rForm.valid">
+    </form>
+</div>

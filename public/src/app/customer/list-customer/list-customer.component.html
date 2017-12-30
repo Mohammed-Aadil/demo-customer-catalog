@@ -18,7 +18,7 @@
             </div>
             <div class="customer-details">
                 <label>Action</label>
-                <a [routerLink]="['/edit']">Edit</a>
+                <a [routerLink]="['/edit', customer._id]">Edit</a>
                 <a class="clickable" (click)="deleteCustomer(customer._id)">Delete</a>
             </div>
           </li>

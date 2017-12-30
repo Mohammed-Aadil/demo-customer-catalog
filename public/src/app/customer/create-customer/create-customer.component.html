@@ -25,7 +25,7 @@
     </div>
 
     <div class="columns" [formArrayName]="'addresses'">
-      <div *ngFor="let addr of rForm.controls.addresses.controls; let i = index">
+      <div *ngFor="let addr of addressData.controls; let i = index">
           <div [formGroupName]="i">
             <div class="columns">
               <label>Address {{i + 1}}</label>
