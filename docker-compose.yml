@@ -1,0 +1,27 @@
+version: '2'
+
+services: 
+  mongodb:
+    command: mongod --dbpath /apps/lib/mongo-data
+    hostname: mongo
+    image: mongodb/mongodb
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes: 
+      - "./mongo-data:/apps/lib/mongo-data"
+    working_dir: /apps/lib/mongo-data
+
+  app: 
+    image: node:6.10
+    command: npm start
+    working_dir: /apps/customer/backend
+    volumes: 
+      - ".:/apps/customer/backend"
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file: .env
+    depends_on: 
+      - mongodb
+  

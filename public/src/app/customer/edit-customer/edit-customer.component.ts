@@ -65,7 +65,7 @@ export class EditCustomerComponent implements OnInit {
       flat: [addr.flat, Validators.required],
       street: [addr.street, Validators.required],
       state: [addr.state, Validators.required],
-      pincode: [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern('^[1-9][0-9]{5}$')])]
+      pincode: [addr.pincode, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern('^[1-9][0-9]{5}$')])]
     });
   }
 

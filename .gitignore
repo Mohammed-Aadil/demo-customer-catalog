@@ -37,6 +37,7 @@ npm-debug.log
 testem.log
 /typings
 .env
+mongo-data
 
 # e2e
 /e2e/*.js
