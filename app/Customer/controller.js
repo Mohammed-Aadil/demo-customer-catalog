@@ -11,6 +11,21 @@ function CustomerController () { }
 * @param {Object} res 
 */
 CustomerController.prototype.list = function (req, res){
+    // find customer from filter
+    var queryfilters = {$or: []};
+    // building filter obj
+    for (var key in req.query) {
+        if (req.query.hasOwnProperty(key) && req.query[key]) {
+            var _f = {};
+            if (key === '_id' || key === 'dob')
+                _f[key] = req.query[key];
+            else
+                _f[key] = {$regex: req.query[key], $options: 'i'};
+            queryfilters.$or.push(_f);
+        }
+    }
+    if (!queryfilters.$or || queryfilters.$or.length == 0)
+        queryfilters = {};
     var filter = { page: parseInt(req.params.page) || 1, limit: 10 };
     if (req.query.fields) {
         if (typeof req.query.fields === 'string')
@@ -18,7 +33,7 @@ CustomerController.prototype.list = function (req, res){
         else
             filter.select = req.query.fields.join(' ');
     }
-    var query = Customer.paginate(req.query || {}, filter);
+    var query = Customer.paginate(queryfilters, filter);
    // find all user
     return query
         .then(function (users) {

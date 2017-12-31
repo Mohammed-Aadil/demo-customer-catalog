@@ -50,3 +50,11 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.search-fields {
+    width: 90%;
+}
+
+.search-fields > input{
+    width: 100%;
+}

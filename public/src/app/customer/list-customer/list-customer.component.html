@@ -7,8 +7,34 @@
         <a [routerLink]="['/create']" class="button button-primary">Add Customer</a>
       </div>
     </div>
+    <div class="columns four">
+        <form [formGroup]="sForm" 
+        (keydown)="onSearchSubmit($event, sForm.value)">
+            <div class="search-fields">
+                <label>Name</label>
+                <input type="text" placeholder="Search name" formControlName="name">
+            </div>
+            <div class="search-fields">
+                <label>Mobile</label>
+                <input type="text" placeholder="Search Mobile" formControlName="mobileNumber">
+            </div>
+            <div class="search-fields">
+                <label>Phone</label>
+                <input type="text" placeholder="Search Phone" formControlName="phoneNumber">
+            </div>
+            <div class="search-fields">
+                <label>DOB</label>
+                <input type="date" placeholder="Search DOB" formControlName="dob">
+            </div>
+            <div class="search-fields">
+                <label>Address</label>
+                <input class="u-full-width" type="text" placeholder="Search Address" formControlName="address">
+            </div>  
+        </form>
+    </div>
+    
     <div *ngIf="!customerList">Loading ...</div>
-    <div class="columns" *ngIf="customerList">
+    <div class="columns eight" *ngIf="customerList">        
         <ul class="customer-listing">
           <li *ngFor='let customer of customerList.docs'>
             <div class="customer-details">
