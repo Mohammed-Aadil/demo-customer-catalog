@@ -21,9 +21,9 @@ export class EditCustomerComponent implements OnInit {
   ngOnInit() {
     this.activatedRouter.params.subscribe(params => {
       this.getCustomer(params.id)
-        .subscribe((customers: any[]) => {
+        .subscribe((customers:{[key: string]: any}) => {
           console.log(customers);
-          this.customer = customers[0];
+          this.customer = customers.docs[0];
           this.createForms(this.customer);
         });
     });
@@ -47,7 +47,7 @@ export class EditCustomerComponent implements OnInit {
 
   getCustomer(id): Observable<any[]> {
     let where: {[key: string]: string} = {_id: id}
-    return this.customerHttpService.getCustomer(where);
+    return this.customerHttpService.getCustomer(where, '1');
   }
 
   createAddressList(addresses: any[]): FormGroup[] {

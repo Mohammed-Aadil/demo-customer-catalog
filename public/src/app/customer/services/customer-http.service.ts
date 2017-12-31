@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import {  } from '@angular/common/http';
 
 @Injectable()
 export class CustomerHttpService {
@@ -12,8 +11,8 @@ export class CustomerHttpService {
    * Function api to get customer list
    * @param filter 
    */
-  getCustomer (filter: {[key: string]: string}): Observable<any> {
-    return this.http.get('/api/Customer/list', {params: filter});
+  getCustomer (filter: {[key: string]: string}, page: string): Observable<any> {
+    return this.http.get('/api/Customer/list/' + page, {params: filter});
   }
 
   /**

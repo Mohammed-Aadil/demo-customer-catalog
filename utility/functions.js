@@ -8,7 +8,7 @@ function randomString (len) {
   for (var i = 0; i < len; i++)
       resStr += str[Math.round(Math.random() * 100) % str.length];
   return resStr;
-};
+}
 
 /**
  * Function to get random string
@@ -20,9 +20,19 @@ function randomNumberAsString (len) {
   for (var i = 0; i < len; i++)
       resStr += str[Math.round(Math.random() * 100) % str.length];
   return resStr;
-};
+}
+
+/**
+ * Function that return random number in given range
+ * @param {number} min
+ * @param {number} max
+ */
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 module.exports = {
+  randomInt: randomInt,
   randomString: randomString,
   randomNumberAsString: randomNumberAsString
 };

@@ -7,18 +7,20 @@
   },
   "dependencies": {
     "bluebird": "3.3.5",
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.15.5",
-    "google-libphonenumber": "^3.0.9",
-    "http-status": "^1.0.1",
-    "jade": "~1.11.0",
-    "moment": "^2.20.1",
-    "mongoose": "^4.13.8",
-    "mongoose-auto-increment": "^5.0.1",
-    "mongoose-timestamp": "^0.6.0",
-    "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5"
+    "body-parser": "1.18.2",
+    "cookie-parser": "1.4.3",
+    "debug": "2.6.9",
+    "express": "4.15.5",
+    "google-libphonenumber": "3.0.9",
+    "http-status": "1.0.1",
+    "jade": "1.11.0",
+    "moment": "2.20.1",
+    "mongoose": "4.13.8",
+    "mongoose-auto-increment": "5.0.1",
+    "mongoose-paginate": "5.0.3",
+    "mongoose-timestamp": "0.6.0",
+    "morgan": "1.9.0",
+    "serve-favicon": "2.4.5",
+    "underscore": "1.8.3"
   }
 }

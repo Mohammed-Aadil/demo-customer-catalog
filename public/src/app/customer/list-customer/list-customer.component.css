@@ -21,6 +21,16 @@
     display: inline-block;
 }
 
+.customer-paginate {
+    list-style: none;
+    text-align: center;
+}
+
+.customer-paginate > li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
 .top-nav {
     background: black;
     color: white;

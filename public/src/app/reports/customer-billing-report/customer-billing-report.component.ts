@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ReportHttpService } from './../services/report-http.service';
 
 @Component({
   selector: 'app-customer-billing-report',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerBillingReportComponent implements OnInit {
 
-  constructor() { }
+  public report: any;
+  constructor(private route: ActivatedRoute, private reportHttpService: ReportHttpService) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.reportHttpService.getReport(params.id)
+        .subscribe(report => {
+          console.log(report);
+          this.report = report;
+        });
+    });
   }
 
 }

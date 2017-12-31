@@ -1,3 +1,32 @@
-<p>
-  customer-billing-report works!
-</p>
+<div class="row customer-billing-reports">
+    <div class="row top-nav">
+        <div class="columns">Customer Billing Report</div>
+    </div>
+    <div *ngIf="!report">Loading ...</div>
+    <div *ngIf="report" class="row">
+        <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Mobile</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>NoOfBills</th>
+                <th>Amount</th>
+                <th>Avg Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{report.customer.name}}</td>
+                <td>{{report.customer.mobileNumber}}</td>
+                <td>{{report.customer.phoneNumber}}</td>
+                <td>{{report.customer.email}}</td>
+                <td>{{report.totBill}}</td>
+                <td>{{report.amount}}</td>
+                <td>{{report.avgAmount}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

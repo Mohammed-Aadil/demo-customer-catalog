@@ -4,7 +4,7 @@ var router = express.Router();
 var controller = new CustomerController();
 
 // api call to list all customer
-router.route('^/list$').get(controller.list);
+router.route('^/list/:page$').get(controller.list);
 // api controller to get list of customer from various filters
 router.route('^/filter').get(controller.filter);
 // api to create customer

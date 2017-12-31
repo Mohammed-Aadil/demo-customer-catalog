@@ -11,16 +11,16 @@ function CustomerController () { }
 * @param {Object} res 
 */
 CustomerController.prototype.list = function (req, res){
-    var query = Customer.find(req.query || {});
-    var fieldStr = '';
+    var filter = { page: parseInt(req.params.page) || 1, limit: 10 };
     if (req.query.fields) {
         if (typeof req.query.fields === 'string')
-            query.select(req.query.fields);
+            filter.select = req.query.fields;
         else
-            query.select(req.query.fields.join(' '));
+            filter.select = req.query.fields.join(' ');
     }
+    var query = Customer.paginate(req.query || {}, filter);
    // find all user
-    return query.exec()
+    return query
         .then(function (users) {
             //return all user
             console.log(users);

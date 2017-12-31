@@ -5,12 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var mainRoutes = require('./routes/main');
+var autoIncrement = require('mongoose-auto-increment');
 
 var app = express();
 
 // setting up mongoose for project
-mongoose.connect(process.env.MONGO_DB_URL);
+var db = mongoose.connect(process.env.MONGO_DB_URL);
+
+autoIncrement.initialize(db.connection);
+
+var mainRoutes = require('./routes/main');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

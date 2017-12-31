@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Validator = require('./../../utility/validator');
 var Schema = mongoose.Schema;
 var timestamp = require('mongoose-timestamp');
+var paginate = require('mongoose-paginate');
 var validator = new Validator();
 
 var customerSchema = new Schema({
@@ -20,8 +21,7 @@ var customerSchema = new Schema({
         required: true
     },
     phoneNumber: {
-        type: String,
-        validate: validator.phoneValidator
+        type: String
     },
     addresses: {
         type: [
@@ -36,5 +36,6 @@ var customerSchema = new Schema({
 });
 
 customerSchema.plugin(timestamp);
+customerSchema.plugin(paginate);
 
 module.exports = mongoose.model('Customer', customerSchema);

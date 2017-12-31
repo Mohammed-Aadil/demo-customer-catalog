@@ -1,15 +1,16 @@
 <div class="row list-customer">
     <div class="row top-nav">
-        <div class="columns">List Customer Catalog</div>
+        <div class="columns">List Customer Catalog {{ customerCount }}</div>
     </div>
     <div class="columns">
       <div>
         <a [routerLink]="['/create']" class="button button-primary">Add Customer</a>
       </div>
     </div>
-    <div class="columns">
+    <div *ngIf="!customerList">Loading ...</div>
+    <div class="columns" *ngIf="customerList">
         <ul class="customer-listing">
-          <li *ngFor='let customer of customerList'>
+          <li *ngFor='let customer of customerList.docs'>
             <div class="customer-details">
                 <label>Name </label> {{customer.name}}
             </div>
@@ -20,8 +21,16 @@
                 <label>Action</label>
                 <a [routerLink]="['/edit', customer._id]">Edit</a>
                 <a class="clickable" (click)="deleteCustomer(customer._id)">Delete</a>
+                <a [routerLink]="['reports/billing', customer._id]">Report</a>
             </div>
           </li>
+        </ul>
+        <ul class="customer-paginate">
+            <li *ngIf="totalPages.length > 1 || customerList.pages > 1"><input type="button" value="Previous" (click)="paginateCustomer(totalPages[0] - 1)"></li>
+            <li *ngFor="let page of totalPages">
+                <input type="button" value="{{page}}" (click)="paginateCustomer(page)">
+            </li>
+            <li *ngIf="totalPages.length > 1 || customerList.pages > 1"><input type="button" value="Next" (click)="paginateCustomer(totalPages[totalPages.length - 1])"></li>
         </ul>
       </div>      
 </div>
